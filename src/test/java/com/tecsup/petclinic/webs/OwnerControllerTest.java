@@ -32,6 +32,16 @@ public class OwnerControllerTest {
     private MockMvc mockMvc;
 
 
+    @Test
+    public void testFindAllOwners() throws Exception {
+
+        int ID_FIRST_RECORD = 1;
+
+        this.mockMvc.perform(get("/owners"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$[0].id", is(ID_FIRST_RECORD)));
+    }
 
     @Test
     public void testFindOwnerKO() throws Exception {
