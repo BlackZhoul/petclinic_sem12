@@ -40,7 +40,7 @@ public class OwnerServiceTest {
 		} catch ( OwnerNotFoundException e) {
 			fail(e.getMessage());
 		}
-		assertEquals(NAME_EXPECTED, owner.getName());
+		assertEquals(NAME_EXPECTED, owner.getFirstName());
 	}
 
 	@Test
