@@ -40,15 +40,13 @@ public class PetControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
-                //		    .andExpect(jsonPath("$", hasSize(NRO_RECORD)))
+                //        .andExpect(jsonPath("$", hasSize(NRO_RECORD)))
                 .andExpect(jsonPath("$[0].id", is(ID_FIRST_RECORD)));
     }
 
 
     /**
-     *
      * @throws Exception
-     *
      */
     @Test
     public void testFindPetOK() throws Exception {
@@ -68,8 +66,8 @@ public class PetControllerTest {
                 .andExpect(jsonPath("$.ownerId", is(OWNER_ID)))
                 .andExpect(jsonPath("$.birthDate", is(BIRTH_DATE)));
     }
+
     /**
-     *
      * @throws Exception
      */
     @Test
@@ -96,7 +94,6 @@ public class PetControllerTest {
         newPetTO.setTypeId(TYPE_ID);
         newPetTO.setOwnerId(OWNER_ID);
         newPetTO.setBirthDate(BIRTH_DATE);
-
         mockMvc.perform(post("/pets")
                         .content(om.writeValueAsString(newPetTO))
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
@@ -112,7 +109,6 @@ public class PetControllerTest {
 
 
     /**
-     *
      * @throws Exception
      */
     @Test
@@ -139,7 +135,7 @@ public class PetControllerTest {
 
         Integer id = JsonPath.parse(response).read("$.id");
 
-        mockMvc.perform(delete("/pets/" + id ))
+        mockMvc.perform(delete("/pets/" + id))
                 /*.andDo(print())*/
                 .andExpect(status().isOk());
     }
@@ -147,7 +143,7 @@ public class PetControllerTest {
     @Test
     public void testDeletePetKO() throws Exception {
 
-        mockMvc.perform(delete("/pets/" + "1000" ))
+        mockMvc.perform(delete("/pets/" + "1000"))
                 /*.andDo(print())*/
                 .andExpect(status().isNotFound());
     }
@@ -190,7 +186,7 @@ public class PetControllerTest {
         upPetTO.setTypeId(UP_TYPE_ID);
         upPetTO.setOwnerId(UP_OWNER_ID);
 
-        mockMvc.perform(put("/pets/"+id)
+        mockMvc.perform(put("/pets/" + id)
                         .content(om.writeValueAsString(upPetTO))
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andDo(print())

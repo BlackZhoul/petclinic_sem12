@@ -39,4 +39,8 @@ public class Owner {
         this.city = city;
         this.telephone = telephone;
     }
+
+    public String getName() {
+        return firstName;
+    }
 }

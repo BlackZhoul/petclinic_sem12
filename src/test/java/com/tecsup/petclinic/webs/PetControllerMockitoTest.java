@@ -86,31 +86,31 @@ public class PetControllerMockitoTest {
     }
 
 
-    /**
-     *
-     * @throws Exception
-     *
-     */
-    @Test
-    public void testFindPetOK() throws Exception {
+/**
+ *
+ * @throws Exception
+ *
+ */
+@Test
+public void testFindPetOK() throws Exception {
 
-        PetTO petTO  = TObjectCreator.getPetTO();
+    PetTO petTO  = TObjectCreator.getPetTO();
 
-        Pet pet  = this.mapper.toPet(petTO);
+    Pet pet  = this.mapper.toPet(petTO);
 
-        Mockito.when(petService.findById(pet.getId()))
-                .thenReturn(pet);
+    Mockito.when(petService.findById(pet.getId()))
+            .thenReturn(pet);
 
-        mockMvc.perform(get("/pets/1"))  // Object must be BASIL
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(petTO.getId())))
-                .andExpect(jsonPath("$.name", is(petTO.getName())))
-                .andExpect(jsonPath("$.typeId", is(petTO.getTypeId())))
-                .andExpect(jsonPath("$.ownerId", is(petTO.getOwnerId())))
-                .andExpect(jsonPath("$.birthDate", is(petTO.getBirthDate())));
-    }
+    mockMvc.perform(get("/pets/1"))  // Object must be BASIL
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.id", is(petTO.getId())))
+            .andExpect(jsonPath("$.name", is(petTO.getName())))
+            .andExpect(jsonPath("$.typeId", is(petTO.getTypeId())))
+            .andExpect(jsonPath("$.ownerId", is(petTO.getOwnerId())))
+            .andExpect(jsonPath("$.birthDate", is(petTO.getBirthDate())));
+}
 
 
     /**
